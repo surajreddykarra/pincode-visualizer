@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PIN Atlas India</title>
+    <link rel="stylesheet" href="./vendor/leaflet/leaflet.css" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Interactive Postal Visualization</p>
+          <h1>PIN Atlas India</h1>
+        </div>
+        <p class="topbar-copy">
+          Explore Indian PIN codes digit by digit. The map recolors itself as the trie narrows.
+        </p>
+      </header>
+
+      <main class="app-layout">
+        <section class="map-panel card">
+          <div class="panel-heading">
+            <div>
+              <p class="panel-kicker">Map</p>
+              <h2>India, projected onto the postal grid</h2>
+            </div>
+            <div class="map-badges">
+              <span class="badge" id="current-pattern">******</span>
+              <span class="badge badge-muted" id="active-level">Zone</span>
+            </div>
+          </div>
+
+          <div class="map-stage" id="map-stage">
+            <div id="leaflet-map" class="leaflet-map" aria-label="Interactive PIN map"></div>
+            <div class="map-overlay-copy">
+              <p id="map-status">Loading data layers...</p>
+            </div>
+          </div>
+        </section>
+
+        <aside class="control-panel">
+          <section class="card hero-card">
+            <p class="panel-kicker">Search</p>
+            <h2>Type one digit at a time</h2>
+            <p class="hero-copy">
+              Empty slots behave like wildcards. Start broad with zones, then watch the map split into
+              sub-zones, sorting districts, and final PIN matches.
+            </p>
+
+            <div class="search-shell" id="search-shell" tabindex="0" role="button" aria-label="PIN search input">
+              <input
+                id="pin-input"
+                class="pin-input"
+                type="text"
+                inputmode="numeric"
+                autocomplete="off"
+                maxlength="6"
+                aria-label="PIN search"
+              />
+              <div class="slot-row" id="slot-row" aria-hidden="true">
+                <div class="pin-slot">*</div>
+                <div class="pin-slot">*</div>
+                <div class="pin-slot">*</div>
+                <div class="pin-slot">*</div>
+                <div class="pin-slot">*</div>
+                <div class="pin-slot">*</div>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <button id="clear-button" class="ghost-button" type="button">Clear</button>
+              <p class="hero-hint" id="hero-hint">Showing all India zones.</p>
+            </div>
+          </section>
+
+          <section class="card stats-card">
+            <p class="panel-kicker">Snapshot</p>
+            <div class="stats-grid">
+              <article class="stat-tile">
+                <span class="stat-label">Matching PINs</span>
+                <strong id="pin-count">0</strong>
+              </article>
+              <article class="stat-tile">
+                <span class="stat-label">Mapped PINs</span>
+                <strong id="mapped-count">0</strong>
+              </article>
+              <article class="stat-tile">
+                <span class="stat-label">Visible Groups</span>
+                <strong id="group-count">0</strong>
+              </article>
+              <article class="stat-tile">
+                <span class="stat-label">Trie Depth</span>
+                <strong id="trie-depth">0 / 6</strong>
+              </article>
+            </div>
+          </section>
+
+          <section class="card legend-card">
+            <div class="panel-heading compact">
+              <div>
+                <p class="panel-kicker">Navigate</p>
+                <h2>Current color split</h2>
+              </div>
+            </div>
+            <div id="prefix-path" class="prefix-path"></div>
+            <div id="legend" class="legend-list"></div>
+          </section>
+
+          <section class="card detail-card">
+            <div class="panel-heading compact">
+              <div>
+                <p class="panel-kicker">Hover</p>
+                <h2>Focused PIN details</h2>
+              </div>
+            </div>
+            <div id="hover-card" class="hover-card-body">
+              <p class="empty-copy">Hover a point on the map to inspect the aggregated PIN metadata.</p>
+            </div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="./vendor/leaflet/leaflet.js"></script>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
