@@ -1,29 +1,38 @@
-# PIN Atlas India
+# codex-app
 
-This static app reads precomputed artifacts from `../codex-data/raw-data`.
+Precomputed demo app. No rebuild required for demos.
 
-## Run locally
+## Files
 
-From the repo root:
+- `index.html`
+- `app.js`
+- `styles.css`
+- `vendor/leaflet/leaflet.js`
+- `vendor/leaflet/leaflet.css`
 
-```bash
-python3 -m http.server 8000
-```
+## Data Inputs Expected
 
-Then open:
-
-`http://127.0.0.1:8000/codex-app/`
-
-## Rebuild data
-
-```bash
-python3 codex-data/scripts/build_pin_data.py
-```
-
-## Local assets
-
-- `../codex-data/raw-data/pincodes-source.csv`
-- `../codex-data/raw-data/india-outline.geojson`
 - `../codex-data/raw-data/pins.json`
 - `../codex-data/raw-data/pin-trie.json`
 - `../codex-data/raw-data/prefix-groups.json`
+- `../codex-data/raw-data/india-outline.geojson`
+
+## Expected Final Structure
+
+```text
+codex-app/
+  index.html
+  app.js
+  styles.css
+  vendor/
+    leaflet/
+      leaflet.js
+      leaflet.css
+
+codex-data/
+  raw-data/
+    pins.json
+    pin-trie.json
+    prefix-groups.json
+    india-outline.geojson
+```
