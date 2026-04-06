@@ -250,8 +250,45 @@ code {
   color: var(--forest);
 }
 
-.tweet-card .twitter-tweet {
+.tweet-embed {
+  display: grid;
+  gap: 1rem;
+}
+
+.tweet-fallback {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.1rem 1.15rem;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tweet-fallback p {
+  margin: 0;
+}
+
+.tweet-embed[data-embed-state="loaded"] .tweet-fallback {
+  display: none;
+}
+
+.tweet-widget-slot {
+  display: none;
+}
+
+.tweet-embed[data-embed-state="loaded"] .tweet-widget-slot {
+  display: block;
+}
+
+.tweet-card .twitter-tweet,
+.tweet-widget-slot iframe {
   margin: 0 auto !important;
+  width: 100% !important;
+  max-width: 550px;
+}
+
+.tweet-source {
+  display: none;
 }
 
 .details-grid {

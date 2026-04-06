@@ -47,11 +47,91 @@
             <h2>Original post</h2>
           </div>
           <div class="tweet-card">
-            <blockquote class="twitter-tweet" data-theme="light"><p lang="en" dir="ltr">Had an idea for a simple pincode data visualizer. Drafted a prompt on what i need, and what to prioritize. <br><br>Gave the same prompt to both claude and codex. same time. <br>plan-mode. (5.4 High vs Opus 4.6 High)<br><br>Data: single csv file with pincode details<br><br>claude is still planning. <a href="https://t.co/mIhaEY6JJB">pic.twitter.com/mIhaEY6JJB</a></p>&mdash; average joe (@jarusionn) <a href="https://twitter.com/jarusionn/status/2040796883384406236?ref_src=twsrc%5Etfw">April 5, 2026</a></blockquote>
+            <div class="tweet-embed" data-embed-state="fallback">
+              <div class="tweet-fallback" aria-live="polite">
+                <p class="tweet-kicker">Original post on X</p>
+                <p>
+                  Had an idea for a simple pincode data visualizer. Drafted a prompt on what i need, and what to
+                  prioritize.
+                </p>
+                <a
+                  class="inline-link"
+                  href="https://x.com/jarusionn/status/2040796883384406236"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Open post on X
+                </a>
+              </div>
+              <div class="tweet-widget-slot" aria-hidden="true"></div>
+              <blockquote class="twitter-tweet tweet-source" data-theme="light">
+                <p lang="en" dir="ltr">
+                  Had an idea for a simple pincode data visualizer. Drafted a prompt on what i need, and what to
+                  prioritize. <br /><br />Gave the same prompt to both claude and codex. same time. <br />plan-mode.
+                  (5.4 High vs Opus 4.6 High)<br /><br />Data: single csv file with pincode details<br /><br />claude is
+                  still planning. <a href="https://t.co/mIhaEY6JJB">pic.twitter.com/mIhaEY6JJB</a>
+                </p>
+                &mdash; average joe (@jarusionn)
+                <a href="https://x.com/jarusionn/status/2040796883384406236?ref_src=twsrc%5Etfw">April 5, 2026</a>
+              </blockquote>
+            </div>
             <script>
               window.addEventListener("load", () => {
-                if (window.twttr?.widgets?.load) {
-                  window.twttr.widgets.load();
+                const embed = document.querySelector(".tweet-embed");
+                const widgetSlot = embed?.querySelector(".tweet-widget-slot");
+
+                if (!embed || !widgetSlot) {
+                  return;
+                }
+
+                const markLoaded = () => {
+                  const hasIframe = Boolean(
+                    widgetSlot.querySelector("iframe.twitter-tweet-rendered, iframe[src*=\"platform.twitter.com\"]"),
+                  );
+
+                  embed.dataset.embedState = hasIframe ? "loaded" : "fallback";
+                };
+
+                const runLoad = () => {
+                  if (window.twttr?.widgets?.createTweet && !widgetSlot.dataset.embedRequested) {
+                    widgetSlot.dataset.embedRequested = "true";
+                    window.twttr.widgets
+                      .createTweet("2040796883384406236", widgetSlot, {
+                        align: "center",
+                        theme: "light",
+                        dnt: true,
+                      })
+                      .then((element) => {
+                        if (element) {
+                          embed.dataset.embedState = "loaded";
+                        } else {
+                          widgetSlot.dataset.embedRequested = "";
+                          markLoaded();
+                        }
+                      })
+                      .catch(() => {
+                        widgetSlot.dataset.embedRequested = "";
+                        markLoaded();
+                      });
+                  } else if (window.twttr?.widgets?.load) {
+                    window.twttr.widgets.load(widgetSlot);
+                    window.setTimeout(markLoaded, 1200);
+                    window.setTimeout(markLoaded, 2500);
+                  }
+                };
+
+                markLoaded();
+                runLoad();
+
+                if (!window.twttr) {
+                  return;
+                }
+
+                if (typeof window.twttr.ready === "function") {
+                  window.twttr.ready(() => {
+                    runLoad();
+                    markLoaded();
+                  });
                 }
               });
             </script>
