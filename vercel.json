@@ -1,0 +1,19 @@
+{
+  "redirects": [
+    {
+      "source": "/claude",
+      "destination": "/claude/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/codex",
+      "destination": "/codex/index.html",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "destination": "/index.html",
+      "permanent": false
+    }
+  ]
+}

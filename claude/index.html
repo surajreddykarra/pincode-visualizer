@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Implementation - PIN Atlas</title>
+  <link rel="stylesheet" href="../assets/vendor/leaflet/leaflet.css" />
+  <script src="../assets/vendor/leaflet/leaflet.js"></script>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="site-backlink" href="/index.html">Back to showdown</a>
+  <div class="app">
+    <!-- HERO SECTION -->
+    <header class="hero">
+      <h1>PIN Atlas</h1>
+      <p class="subtitle">Explore India's postal network, digit by digit</p>
+
+      <!-- 6-digit OTP-style search -->
+      <div class="pin-input-group">
+        <div class="pin-slot">
+          <input type="text" maxlength="1" inputmode="numeric" data-index="0" />
+          <span class="slot-label">Zone</span>
+        </div>
+        <div class="pin-slot">
+          <input type="text" maxlength="1" inputmode="numeric" data-index="1" />
+          <span class="slot-label">Sub-zone</span>
+        </div>
+        <div class="pin-slot">
+          <input type="text" maxlength="1" inputmode="numeric" data-index="2" />
+          <span class="slot-label">District</span>
+        </div>
+        <div class="pin-slot">
+          <input type="text" maxlength="1" inputmode="numeric" data-index="3" />
+          <span class="slot-label">Route</span>
+        </div>
+        <div class="pin-slot">
+          <input type="text" maxlength="1" inputmode="numeric" data-index="4" />
+          <span class="slot-label">Sub-route</span>
+        </div>
+        <div class="pin-slot">
+          <input type="text" maxlength="1" inputmode="numeric" data-index="5" />
+          <span class="slot-label">Office</span>
+        </div>
+      </div>
+      <div class="pin-pattern" id="pin-pattern">******</div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="content">
+      <!-- MAP -->
+      <section class="map-container">
+        <div id="map" class="map"></div>
+        <div class="map-status" id="map-status">Loading...</div>
+      </section>
+
+      <!-- SIDEBAR -->
+      <aside class="sidebar">
+        <!-- Legend card -->
+        <div class="card legend-card">
+          <h3>Legend</h3>
+          <div id="legend" class="legend-list"></div>
+        </div>
+
+        <!-- Stats card -->
+        <div class="card stats-card">
+          <h3>Statistics</h3>
+          <div id="stats"></div>
+        </div>
+
+        <!-- Info card -->
+        <div class="card info-card">
+          <h3>About</h3>
+          <div id="info-panel"></div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="js/colors.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
